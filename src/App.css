@@ -1,0 +1,39 @@
+/*
+ * @NOTE: Prepend a `~` to css file paths that are in your node_modules
+ *        See https://github.com/webpack-contrib/sass-loader#imports
+ */
+
+/* Project Color Palete
+ * #FFD4B2
+ * #FFF6BD
+ * #CEEDC7
+ * #86C8BC
+ */
+body {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  height: 100vh;
+  font-family: 'Inter', sans-serif;
+  overflow-y: hidden;
+  display: flex;
+  color: black;
+  background-color: #ffd4b2;
+  -webkit-user-drag: none;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 15px;
+}

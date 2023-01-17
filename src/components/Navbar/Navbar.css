@@ -1,0 +1,40 @@
+#menubutton {
+  cursor: pointer;
+  height: 44px;
+  width: 44px;
+  transition-duration: 0.5s;
+  border-radius: 20px;
+  padding: 5px;
+  padding-top: 7px;
+  margin: 5px;
+  -webkit-user-drag: none;
+}
+
+#menubutton-open {
+  cursor: pointer;
+  height: 44px;
+  width: 44px;
+  transition-duration: 0.5s;
+  border-radius: 20px;
+  padding: 5px;
+  padding-top: 7px;
+  margin: 5px;
+  -webkit-user-drag: none;
+  background-color: lightblue;
+}
+
+#menubutton:hover {
+  background-color: lightblue;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}

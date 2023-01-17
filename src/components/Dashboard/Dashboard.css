@@ -1,0 +1,10 @@
+#dashboard {
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+h1 {
+  font-weight: bold;
+}

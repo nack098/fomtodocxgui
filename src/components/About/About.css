@@ -1,0 +1,19 @@
+#aboutbox {
+  display: block;
+  position: fixed;
+  height: 75%;
+  width: 80%;
+  border: 2px solid black;
+  padding-top: 1%;
+  margin: 1%;
+  margin-left: 3%;
+  background-color: #ceedc7;
+}
+
+#aboutbox p {
+  font-size: 12px;
+}
+
+#aboutbox h3 {
+  font-size: 14px;
+}
