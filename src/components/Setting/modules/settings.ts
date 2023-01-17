@@ -14,16 +14,12 @@ export const saveSettings = async (userSettings: string) => {
     });
     console.log("Success");
   } catch (err) {
-    if (
-      err ===
-      "path: /home/nack/.config/com.tauri.dev/config.json: No such file or directory (os error 2)"
-    ) {
       await createDir("formtodocx", {
         dir: BaseDirectory.AppConfig,
         recursive: true,
       });
       saveSettings(userSettings);
-    }
+      console.log(err)
   }
 };
 
