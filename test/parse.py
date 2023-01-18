@@ -4,7 +4,8 @@ import gspread
 def openSpreadSheet(cerdPath) :
     account = gspread.service_account(cerdPath)
     listOfSheets = [data['name'] for data in account.list_spreadsheet_files()]
-    print(str(listOfSheets).encode("utf-8"))
+    for sheet in listOfSheets :
+        print(sheet)
 
 def main() :
     cerdPath = sys.argv[1]
