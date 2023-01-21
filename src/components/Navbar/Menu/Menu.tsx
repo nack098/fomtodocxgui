@@ -1,21 +1,22 @@
-import { motion } from 'framer-motion';
-import './Menu.css';
+import React from "react";
+import { motion } from "framer-motion";
+import "./Menu.css";
 
 const moveIn = {
   hidden: {
-    x: '-50vw',
-    opacity: '0',
+    x: "-50vw",
+    opacity: "0",
   },
   visible: {
-    x: '0',
-    opacity: '1',
+    x: "0",
+    opacity: "1",
     transition: {
       duration: 0.3,
     },
   },
   exit: {
-    x: '0vw',
-    opacity: '0',
+    x: "0vw",
+    opacity: "0",
   },
 };
 

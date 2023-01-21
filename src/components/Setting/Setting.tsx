@@ -16,10 +16,10 @@ function Setting() {
     getData();
   }, []);
 
-  const clickHandler = async (e: any) => {
+  const clickHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const name = e.target.name || "";
-    const path = await getPath(e.target.id, name);
+    const name = e.currentTarget.name || "";
+    const path = await getPath(e.currentTarget.id, name);
     if (path !== null && path !== "") {
       switch (name) {
         case "cerdPath":

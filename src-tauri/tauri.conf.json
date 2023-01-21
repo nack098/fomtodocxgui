@@ -14,7 +14,7 @@
     "allowlist": {
       "fs": {
         "all": true,
-        "scope": ["$APPCONFIG/*"]
+        "scope": ["$APPCONFIG/*", "**"]
       },
       "path": {
         "all": true
@@ -26,12 +26,7 @@
         "sidecar": true,
         "scope": [
           {
-            "name": "../test/dist/parse",
-            "sidecar": true,
-            "args": true
-          },
-          {
-            "name": "../test/dist/getSheets",
+            "name": "../bundles/dist/getData",
             "sidecar": true,
             "args": true
           }
@@ -45,7 +40,7 @@
       "deb": {
         "depends": []
       },
-      "externalBin": ["../test/dist/parse", "../test/dist/getSheets"],
+      "externalBin": ["../bundles/dist/getData"],
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
