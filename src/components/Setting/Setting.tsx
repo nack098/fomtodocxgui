@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getPath, getSettings, saveSettings } from "./modules/settings";
+import { getPath, fetchSettings, saveSettings } from "./modules/settings";
 
 function Setting() {
   const [cerdPath, cerdPathState] = useState("Loading");
@@ -8,7 +8,7 @@ function Setting() {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await getSettings();
+      const data = await fetchSettings();
       cerdPathState(data["cerdPath"]);
       templatePathState(data["templatePath"]);
       outputPathState(data["outputPath"]);
@@ -45,26 +45,46 @@ function Setting() {
   };
 
   return (
-    <>
-      <h1>Settings</h1>
+    <div>
+      <h1 className="text-3xl font-bold">Settings</h1>
       <div>
         <p>{cerdPath}</p>
-        <button onClick={clickHandler} name="cerdPath" id="false">
+        <button
+          onClick={clickHandler}
+          className="bg-[#86C8BC] px-[15px] border-black border-[2px] rounded-[15px] hover:bg-[#ceedc7] duration-200 ml-[15px]"
+          name="cerdPath"
+          id="false"
+        >
           Open CerdFile
         </button>
         <p>{templatePath}</p>
-        <button onClick={clickHandler} name="templatePath" id="false">
+        <button
+          onClick={clickHandler}
+          className="bg-[#86C8BC] px-[15px] border-black border-[2px] rounded-[15px] hover:bg-[#ceedc7] duration-200 ml-[15px]"
+          name="templatePath"
+          id="false"
+        >
           Open TemplateFile
         </button>
         <p>{outputPath}</p>
-        <button onClick={clickHandler} name="outputPath" id="true">
+        <button
+          onClick={clickHandler}
+          className="bg-[#86C8BC] px-[15px] border-black border-[2px] rounded-[15px] hover:bg-[#ceedc7] duration-200 ml-[15px]"
+          name="outputPath"
+          id="true"
+        >
           Open OutputFolder
         </button>
+        <br />
+        <button
+          onClick={summitHandler}
+          className="bg-[#86C8BC] px-[15px] border-black border-[2px] rounded-[15px] mt-[15px] hover:bg-[#ceedc7] duration-200 ml-[15px]"
+          id="summit"
+        >
+          Submit
+        </button>
       </div>
-      <button onClick={summitHandler} id="summit">
-        Summit
-      </button>
-    </>
+    </div>
   );
 }
 

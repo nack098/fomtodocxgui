@@ -5,15 +5,15 @@ import gspread
 def getData(cerdKey) :
     account = gspread.service_account(cerdKey)
     spreadsheetList = account.list_spreadsheet_files()
-    returnValue = {}
+    returnValue = [] 
     for sheet in spreadsheetList :
         worksheetList = account.open(sheet["name"]).worksheets()
-        if sheet["name"] not in returnValue:
-            returnValue[sheet["name"]] = {}
         for worksheetnum, worksheet in enumerate(worksheetList) :
             dataList = account.open(sheet["name"]).worksheet(worksheet.title).get_all_records()
             dataList = [{str(key): str(value) for key,value in data.items()} for data in dataList]
-            returnValue[sheet["name"]][worksheet.title] = dataList
+            for data in dataList :
+                data.update({"sheet": sheet["name"], "worksheet": worksheet.title})
+            returnValue += dataList
     returnValue = json.dumps(returnValue, ensure_ascii=False).encode('utf-8')
     print(returnValue.decode())
 

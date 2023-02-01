@@ -1,62 +1,63 @@
 import React, { useEffect, useState } from "react";
-import { readTextFile } from "@tauri-apps/api/fs";
-import { getSettings } from "../Setting/modules/settings";
+import { fetchSettings } from "../Setting/modules/settings";
+import { Data } from "./components";
 import "./Dashboard.css";
-import { getData } from "./modules/getData";
+import { fetchData } from "./modules/fetchData";
 
-const defaultSettings: Settings = {
-  cerdPath: "",
-  outputPath: "",
-  templatePath: "",
-};
-
-const DataIterator = (props: any) => {
-  const data = props.data;
-  const array: React.ReactElement[] = [];
-  let count = 0;
-  for (const sheet in data) {
-    array.push(<h3 key={`${sheet}${count}`}>{sheet}</h3>);
-    count += 1;
-    let subcount = 0;
-    for (const name in data[sheet]) {
-      array.push(<p key={`${name}${subcount}`}>{name}</p>);
-      subcount += 1;
-    }
-  }
-  console.log(array);
-  return <>{array}</>;
-};
-
-function Dashboard() {
-  const [settings, settingsState] = useState(defaultSettings);
-  const [key, keyState] = useState({});
+const Dashboard = () => {
   const [loading, loadingState] = useState(true);
-  const [data, dataState] = useState({});
-
-  const refresh = async () => {
-    loadingState(true);
-    const data = await getData(settings.cerdPath);
-    dataState(data);
-    loadingState(false);
-  };
+  const [settings, settingsState] = useState(Object);
+  const [data, dataState] = useState(Object);
+  const [select, selectState] = useState<any[]>([]);
 
   useEffect(() => {
-    const getCurrentSettings = async () => {
-      const currentSettings = await getSettings();
-      settingsState(currentSettings);
-      const data = await getData(currentSettings.cerdPath);
+    const getSettings = async () => {
+      const settings = await fetchSettings();
+      settingsState(settings);
+      return settings;
+    };
+    const getData = async () => {
+      const settings = await getSettings();
+      const data = await fetchData(settings.cerdPath);
       dataState(data);
       loadingState(false);
     };
-    getCurrentSettings();
+    getData();
   }, []);
+
+  const refresh = async () => {
+    try {
+      loadingState(true);
+      const newData = await fetchData(settings.cerdPath);
+      dataState(newData);
+      loadingState(false);
+    } catch (e) {
+      loadingState(true);
+    }
+  };
 
   return (
     <div id="dashboard">
-      <h1>Dashboard</h1>
-      <DataIterator data={data} />
+      <div>
+        <h1 className="font-bold text-3xl">Dashboard</h1>
+        <div className="flex flex-col m-0">
+          <div>
+            <button
+              onClick={refresh}
+              className="w-auto h-auto ml-[15px] bg-[#86C8BC] px-[15px] border-black border-[2px] rounded-[15px] hover:bg-[#ceedc7] duration-200"
+            >
+              Refresh
+            </button>
+          </div>
+          {!loading == true ? (
+            <Data data={data} select={select} selectState={selectState} />
+          ) : (
+            <p className="font-bold underline text-xl">Loading...</p>
+          )}
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default Dashboard;

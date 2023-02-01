@@ -42,7 +42,7 @@ function Menu() {
         </li>
       </ul>
       <div id="ref">
-        <h4>Created by</h4>
+        <h4 className="font-bold text-xs">Created by</h4>
         <p>Tapaneeya Odmung</p>
       </div>
     </motion.div>

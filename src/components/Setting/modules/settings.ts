@@ -14,16 +14,16 @@ export const saveSettings = async (userSettings: string) => {
     });
     console.log("Success");
   } catch (err) {
-      await createDir("formtodocx", {
-        dir: BaseDirectory.AppConfig,
-        recursive: true,
-      });
-      saveSettings(userSettings);
-      console.log(err)
+    await createDir("formtodocx", {
+      dir: BaseDirectory.AppConfig,
+      recursive: true,
+    });
+    saveSettings(userSettings);
+    console.log(err);
   }
 };
 
-export const getSettings = async () => {
+export const fetchSettings = async () => {
   try {
     const file = await readTextFile("config.json", {
       dir: BaseDirectory.AppConfig,

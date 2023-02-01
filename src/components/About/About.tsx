@@ -3,8 +3,10 @@ import "./About.css";
 
 function About() {
   return (
-    <>
-      <h1 id="about">About</h1>
+    <div>
+      <h1 id="about" className="font-bold text-3xl">
+        About
+      </h1>
       <div id="aboutbox">
         <p>
           This program created for add data from Google Form to Docx file. This
@@ -21,7 +23,7 @@ function About() {
           <b>Phone:</b> (+66)91-886-4900
         </p>
       </div>
-    </>
+    </div>
   );
 }
 
