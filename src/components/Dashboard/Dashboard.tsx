@@ -44,13 +44,18 @@ const Dashboard = () => {
           <div>
             <button
               onClick={refresh}
-              className="w-auto h-auto ml-[15px] bg-[#86C8BC] px-[15px] border-black border-[2px] rounded-[15px] hover:bg-[#ceedc7] duration-200"
+              className="w-auto h-auto ml-[15px] bg-[#86C8BC] px-[15px] rounded-[15px] hover:bg-[#ceedc7] duration-200"
             >
               Refresh
             </button>
           </div>
           {!loading == true ? (
-            <Data data={data} select={select} selectState={selectState} />
+            <Data
+              data={data}
+              select={select}
+              selectState={selectState}
+              settings={settings}
+            />
           ) : (
             <p className="font-bold underline text-xl">Loading...</p>
           )}

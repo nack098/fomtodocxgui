@@ -1,5 +1,37 @@
-import React, { useMemo } from "react";
-import { useTable } from "react-table";
+// @ts-nocheck
+
+import React, {
+  useMemo,
+  useEffect,
+  MouseEventHandler,
+  MouseEvent,
+} from "react";
+import { useTable, useRowSelect } from "react-table";
+import { dataToDocx } from "../modules/dataToDocx";
+
+interface IndeterminateInputProps {
+  indeterminate?: any;
+  name: string;
+}
+
+const IndeterminateCheckbox = React.forwardRef<
+  HTMLInputElement,
+  IndeterminateInputProps
+>(({ indeterminate, ...rest }, ref) => {
+  const defaultRef = React.useRef<HTMLInputElement>();
+  const resolvedRef = (ref ||
+    defaultRef) as React.MutableRefObject<HTMLInputElement>;
+
+  React.useEffect(() => {
+    resolvedRef.current.indeterminate = indeterminate;
+  }, [resolvedRef, indeterminate]);
+
+  return (
+    <>
+      <input type="checkbox" ref={resolvedRef} {...rest} />
+    </>
+  );
+});
 
 const Table = (props: any) => {
   const data = useMemo(() => props.data, []);
@@ -14,8 +46,50 @@ const Table = (props: any) => {
     return array;
   }, []);
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    selectedFlatRows,
+  } = useTable({ columns, data }, useRowSelect, (hooks) => {
+    hooks.visibleColumns.push((columns) => [
+      // Let's make a column for selection
+      {
+        id: "selection",
+        // The header can use the table's getToggleAllRowsSelectedProps method
+        // to render a checkbox
+        Header: ({ getToggleAllRowsSelectedProps }) => (
+          <div>
+            <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+          </div>
+        ),
+        // The cell can use the individual row's getToggleRowSelectedProps method
+        // to the render a checkbox
+        Cell: ({ row }) => (
+          <div>
+            <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+          </div>
+        ),
+      },
+      ...columns,
+    ]);
+  });
+
+  const submit = (e: MouseEvent) => {
+    e.preventDefault();
+    const send = selectedFlatRows.map((e) => e.original);
+    for (const value of send) {
+      dataToDocx(
+        props.settings.templatePath,
+        value,
+        props.settings.outputPath,
+        value["Timestamp"]
+      );
+    }
+  };
+
   return (
     <div className="mx-16 overflow-scroll mb-[15px]">
       <table
@@ -53,6 +127,12 @@ const Table = (props: any) => {
           })}
         </tbody>
       </table>
+      <button
+        onClick={submit}
+        className="mt-[15px] w-auto h-auto ml-[15px] bg-[#86C8BC] px-[15px] rounded-[15px] hover:bg-[#ceedc7] duration-200"
+      >
+        Submit
+      </button>
     </div>
   );
 };

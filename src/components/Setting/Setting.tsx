@@ -51,7 +51,7 @@ function Setting() {
         <p>{cerdPath}</p>
         <button
           onClick={clickHandler}
-          className="bg-[#86C8BC] px-[15px] border-black border-[2px] rounded-[15px] hover:bg-[#ceedc7] duration-200 ml-[15px]"
+          className="bg-[#86C8BC] px-[15px] rounded-[15px]"
           name="cerdPath"
           id="false"
         >
@@ -60,7 +60,7 @@ function Setting() {
         <p>{templatePath}</p>
         <button
           onClick={clickHandler}
-          className="bg-[#86C8BC] px-[15px] border-black border-[2px] rounded-[15px] hover:bg-[#ceedc7] duration-200 ml-[15px]"
+          className="bg-[#86C8BC] px-[15px] rounded-[15px]"
           name="templatePath"
           id="false"
         >
@@ -69,7 +69,7 @@ function Setting() {
         <p>{outputPath}</p>
         <button
           onClick={clickHandler}
-          className="bg-[#86C8BC] px-[15px] border-black border-[2px] rounded-[15px] hover:bg-[#ceedc7] duration-200 ml-[15px]"
+          className="bg-[#86C8BC] px-[15px] rounded-[15px]"
           name="outputPath"
           id="true"
         >
@@ -78,10 +78,10 @@ function Setting() {
         <br />
         <button
           onClick={summitHandler}
-          className="bg-[#86C8BC] px-[15px] border-black border-[2px] rounded-[15px] mt-[15px] hover:bg-[#ceedc7] duration-200 ml-[15px]"
+          className="bg-[#86C8BC] px-[15px] rounded-[15px] mt-[15px]"
           id="summit"
         >
-          Submit
+          Summit
         </button>
       </div>
     </div>

@@ -12,6 +12,7 @@
   "dependencies": {
     "@googleapis/drive": "^4.0.1",
     "@tauri-apps/api": "^1.2.0",
+    "@types/react-table": "^7.7.14",
     "framer-motion": "^8.4.3",
     "googleapi": "^1.0.2",
     "googleapis": "^110.0.0",

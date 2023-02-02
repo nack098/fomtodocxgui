@@ -59,7 +59,10 @@ const Data = (props: any) => {
                 Downloaded
               </h4>
               <Table
+                settings={props.settings}
                 data={downloaded}
+                select={props.select}
+                selectState={props.selectState}
                 id="table"
                 key={`${index1}:${index2}:Downloaded`}
               />
@@ -76,7 +79,10 @@ const Data = (props: any) => {
                 Not Download
               </h4>
               <Table
+                settings={props.settings}
                 data={unload}
+                select={props.select}
+                selectState={props.selectState}
                 id="table"
                 key={`${index1}:${index2}:NotDownload`}
               />
@@ -94,6 +100,9 @@ const Data = (props: any) => {
               </h4>
               <Table
                 data={unknown}
+                settings={props.settings}
+                select={props.select}
+                selectState={props.selectState}
                 id="table"
                 key={`${index1}:${index2}:Unknown`}
               />
