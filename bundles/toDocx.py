@@ -6,7 +6,6 @@ from docxtpl import DocxTemplate
 def toDocx(templatePath:str, content:str, outputPath:str, name:str) :
     content = json.loads(content)
     template = DocxTemplate(templatePath)
-    print(content)
     template.render(content)
     if not os.path.exists(outputPath+f"/{content['sheet']}") :
         os.makedirs(outputPath+f"/{content['sheet']}")
