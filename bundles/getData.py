@@ -14,8 +14,8 @@ def getData(cerdKey) :
             for data in dataList :
                 data.update({"sheet": sheet["name"], "worksheet": worksheet.title})
             returnValue += dataList
-    returnValue = json.dumps(returnValue, ensure_ascii=False).encode('utf-8')
-    print(returnValue.decode())
+    returnValue = json.dumps(returnValue) 
+    print(returnValue)
 
 def main() :
     cerdKey = sys.argv[1]

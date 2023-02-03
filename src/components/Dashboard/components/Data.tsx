@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import Table from "./Table";
 
 const Data = (props: any) => {
+  console.log(props.data);
   try {
     const data = {};
     const render: React.ReactElement[] = [];
